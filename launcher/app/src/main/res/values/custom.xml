@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movies_label" translatable="false">Фильмы</string>
+    <string name="movies_not_set" translatable="false">Папка с фильмами не настроена</string>
+    <string name="movies_no_vlc" translatable="false">Не установлен VLC</string>
+
+    <string name="backdrop_state" translatable="false">Фон: %1$s</string>
+    <string name="backdrop_video" translatable="false">Видео</string>
+    <string name="backdrop_video_missing" translatable="false">Видео (файла нет — анимация)</string>
+    <string name="backdrop_animated" translatable="false">Лёгкая анимация</string>
+    <string name="backdrop_off" translatable="false">Выключен</string>
+</resources>

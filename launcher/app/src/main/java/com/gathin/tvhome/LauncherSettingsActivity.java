@@ -33,6 +33,7 @@ public final class LauncherSettingsActivity extends Activity {
     private static final int[] DOCK_OPACITIES = {100, 70, 50, 30};
     private final TextView[] dockChoices = new TextView[DOCK_OPACITIES.length];
     private TextView wallpaperChoice;
+    private TextView backdropChoice;
     private TextView animationsChoice;
     private TextView advancedChoice;
     private TextView followThemeChoice;
@@ -108,6 +109,15 @@ public final class LauncherSettingsActivity extends Activity {
         }
         wallpaperChoice = findViewById(R.id.wallpaperChoice);
         wallpaperChoice.setOnClickListener(v -> showWallpaperPicker());
+        backdropChoice = findViewById(R.id.backdropChoice);
+        backdropChoice.setOnClickListener(v -> {
+            String mode = Backdrop.mode(this);
+            String next = Backdrop.VIDEO.equals(mode) ? Backdrop.ANIMATED
+                    : Backdrop.ANIMATED.equals(mode) ? Backdrop.OFF : Backdrop.VIDEO;
+            choices.edit().putString(Backdrop.MODE_KEY, next).apply();
+            setResult(RESULT_OK);
+            refresh();
+        });
         animationsChoice = findViewById(R.id.animationsChoice);
         animationsChoice.setOnClickListener(v -> {
             animations = !animations;
@@ -298,6 +308,11 @@ public final class LauncherSettingsActivity extends Activity {
                         : wallpaperCurrent != null ? wallpaperCurrent
                         : getString(R.string.wallpaper_theme_default)));
         openOnStartChoice.setText(getString(R.string.open_on_start_state, openOnStartLabel()));
+        String backdrop = Backdrop.mode(this);
+        backdropChoice.setText(getString(R.string.backdrop_state, getString(
+                Backdrop.ANIMATED.equals(backdrop) ? R.string.backdrop_animated
+                        : Backdrop.OFF.equals(backdrop) ? R.string.backdrop_off
+                        : Backdrop.hasVideo(this) ? R.string.backdrop_video : R.string.backdrop_video_missing)));
         followThemeChoice.setSelected(!hasOnTvChoices());
     }
 

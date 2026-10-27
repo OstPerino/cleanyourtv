@@ -73,9 +73,12 @@ final class ClockScene {
     };
 
     /** root is the inflated dream_clock layout. */
+    private final AuroraView aurora;
+
     ClockScene(View root) {
         content = root.findViewById(R.id.dreamContent);
         ambient = root.findViewById(R.id.dreamAmbient);
+        aurora = root.findViewById(R.id.dreamAurora);
         glow = new GradientDrawable();
         glow.setGradientType(GradientDrawable.RADIAL_GRADIENT);
         ambient.setBackground(glow);
@@ -93,12 +96,14 @@ final class ClockScene {
         });
         handler.removeCallbacks(tick);
         handler.postDelayed(tick, MOVE_MS);
+        if (aurora != null) aurora.start();
         if (wallpaperFile != null && !wallpaperShown) loadWallpaper();
     }
 
     void stop() {
         handler.removeCallbacksAndMessages(null);   // the tick and any glow steps still queued
         content.animate().cancel();
+        if (aurora != null) aurora.stop();
         wallpaperGeneration++;   // a decode still running must not attach its picture to a stopped scene
     }
 

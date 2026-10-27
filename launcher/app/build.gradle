@@ -2,6 +2,11 @@ plugins {
     id 'com.android.application'
 }
 
+def tvLocal = new Properties()
+def tvLocalFile = rootProject.file('local.properties')
+if (tvLocalFile.exists()) tvLocalFile.withReader('UTF-8') { tvLocal.load(it) }
+def tvValue = { String key -> tvLocal.getProperty(key, '').replace('"', '') }
+
 android {
     namespace 'com.gathin.tvhome'
     compileSdk 34
@@ -10,6 +15,10 @@ android {
         // Opt-in identity for firmware with a package-name HOME allowlist; see docs/devices/xiaomi-mitv-aetp0-dofus.md.
         applicationId providers.gradleProperty('launcherApplicationId').getOrElse('com.gathin.tvhome')
         minSdk 26
+        resValue 'string', 'movies_uri', tvValue('tv.movies_uri')
+        resValue 'string', 'weather_city', tvValue('tv.weather_city')
+        resValue 'string', 'weather_latitude', tvValue('tv.weather_latitude')
+        resValue 'string', 'weather_longitude', tvValue('tv.weather_longitude')
         targetSdk 34
         versionCode 9
         versionName '3.0'

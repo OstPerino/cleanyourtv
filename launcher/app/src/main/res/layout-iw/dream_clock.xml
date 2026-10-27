@@ -6,6 +6,11 @@
     android:background="#FF000000">
 
     <!-- The glow is its background; clock_wallpaper puts the picture in it, cropped like Home's. -->
+    <com.gathin.tvhome.AuroraView
+        android:id="@+id/dreamAurora"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ImageView
         android:id="@+id/dreamAmbient"
         android:layout_width="match_parent"
