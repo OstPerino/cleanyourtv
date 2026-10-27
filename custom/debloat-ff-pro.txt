@@ -1,0 +1,20 @@
+# Haier Android TV FF Pro (daan), Android TV 14, UKNV.260410.001 — what was disabled on the living-room TV.
+# Undo: TV_HOST=127.0.0.1 TV_PORT=15555 tools/restore.sh custom/debloat-ff-pro.txt com.google.android.tvlauncher
+# The firmware re-enables com.netflix.ninja and com.cltv.fast at every boot (hidden from the launcher instead).
+com.netflix.ninja                                # Netflix
+com.amazon.amazonvideo.livingroom                # Prime Video
+com.google.android.youtube.tvmusic               # YouTube Music
+ru.haier.evo                                     # Haier Evo smart home, AppMetrica, claims HOME
+com.haier.apps.evoSmart                          # Haier Evo promo
+com.cltv.fast                                    # Anoki FAST channels
+com.haier.gamingbar                              # gaming overlay
+com.google.android.play.games                    # Play Games
+tv.anoki.acr.anokiacroptin                       # Anoki ACR (content recognition)
+fusion.android.tv.demo                           # retail demo
+com.haierubic.usmartdevice                       # Haier smart-device service
+com.haier.apps                                   # Kinopoisk promo stub
+com.haier.tvhousekeeper                          # cleaner
+com.cvte.haier.tv.appmanager                     # boot receiver that manages Haier apps
+com.google.android.feedback
+com.google.android.partnersetup
+android.autoinstalls.config.haier.hanyang        # auto-install stub
